@@ -1,9 +1,10 @@
 import objectPath from "object-path";
 import merge from "deepmerge";
 import layoutConfig from "@/core/config/DefaultLayoutConfig";
-import { Mutations } from "@/store/enums/StoreEnums";
-import { Mutation, Module, VuexModule } from "vuex-module-decorators";
+import { Mutations, Actions } from "@/store/enums/StoreEnums";
+import { Mutation, Module, VuexModule, Action } from "vuex-module-decorators";
 import LayoutConfigTypes from "@/core/config/LayoutConfigTypes";
+import ApiService from "@/core/services/ApiService";
 
 interface StoreInfo {
   config: LayoutConfigTypes;
@@ -49,5 +50,15 @@ export default class ConfigModule extends VuexModule implements StoreInfo {
   @Mutation
   [Mutations.OVERRIDE_PAGE_LAYOUT_CONFIG](payload): void {
     this.config = merge(this.config, payload);
+  }
+
+  @Action
+  [Actions.MENU]() {
+    ApiService.get("main-menu").then(({ data }) => {
+      this.context.commit(Mutations.SET_LAYOUT_CONFIG_PROPERTY, {
+        property: "sidebar.menu",
+        value: data,
+      });
+    });
   }
 }

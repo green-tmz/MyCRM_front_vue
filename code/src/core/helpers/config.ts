@@ -18,6 +18,14 @@ export const themeMode = computed(() => {
 });
 
 /**
+ * Returns sidebar
+ * @returns {string}
+ */
+export const sidebarMenu = computed(() => {
+  return store.getters.layoutConfig("sidebar.menu");
+});
+
+/**
  * Set the sidebar display
  * @returns {boolean}
  */

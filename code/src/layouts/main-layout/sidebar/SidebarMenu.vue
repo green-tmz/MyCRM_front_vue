@@ -237,9 +237,11 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-// import MainMenuConfig from "@/core/config/MainMenuConfig";
+import { Actions } from "@/store/enums/StoreEnums";
 import { sidebarMenuIcons } from "@/core/helpers/config";
 import { useI18n } from "vue-i18n";
+import objectPath from "object-path";
+import { config } from "@/core/helpers/config";
 
 export default defineComponent({
   name: "sidebar-menu",
@@ -268,8 +270,7 @@ export default defineComponent({
       return route.path.indexOf(match) !== -1;
     };
 
-    const MainMenuConfig = store.getters.getMainMenu;
-    console.log(MainMenuConfig);
+    const MainMenuConfig = objectPath.get(config.value, "sidebar.menu");
 
     return {
       hasActiveChildren,

@@ -37,6 +37,8 @@ class LayoutService {
 
     store.dispatch(Actions.ADD_BODY_CLASSNAME, "app-" + layout);
 
+    store.dispatch(Actions.MENU);
+
     store.dispatch(Actions.ADD_BODY_ATTRIBUTE, {
       qualifiedName: "data-kt-app-layout",
       value: layout,

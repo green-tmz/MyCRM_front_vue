@@ -211,7 +211,6 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { Actions } from "@/store/enums/StoreEnums";
 import { PasswordMeterComponent } from "@/assets/ts/components";
-import Swal from "sweetalert2/dist/sweetalert2.min.js";
 
 export default defineComponent({
   name: "sign-up",
